@@ -31,7 +31,6 @@ test_emnist_data = EMNIST(
 
 model = MNISTNet()
 model = train.train(model, train_mnist_data)
-# for param in model.parameters():
-#     param.requires_grad = False
+model.linear1.requires_grad = False
 model = train.train(model, train_emnist_data)
 test.test(model, test_emnist_data)
