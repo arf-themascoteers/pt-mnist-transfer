@@ -4,8 +4,8 @@ import torch
 import time
 
 def train(model, working_set):
-    NUM_EPOCHS = 1
-    BATCH_SIZE = 100
+    NUM_EPOCHS = 5
+    BATCH_SIZE = 1000
     dataloader = DataLoader(working_set, batch_size=BATCH_SIZE, shuffle=True)
     model.train()
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-5)
@@ -21,7 +21,7 @@ def train(model, working_set):
             optimizer.step()
         print(f'Epoch:{epoch + 1}, Loss:{loss.item():.4f}')
     end_time = time.time()
-    print(f"Training end. Time required: {end_time-start_time}")
+    print(f"Training end. Time required: {round(end_time-start_time,2)}")
     return model
 
 
