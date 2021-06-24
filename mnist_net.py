@@ -6,16 +6,12 @@ class MNISTNet(nn.Module):
     def __init__(self):
         super(MNISTNet, self).__init__()
         self.net = nn.Sequential(
-            nn.Conv2d(1,16, (5,5)),
+            nn.Linear(784, 500),
             nn.ReLU(),
-            nn.MaxPool2d(kernel_size=(2,2)),
-            nn.Conv2d(16, 32, (3, 3)),
-            nn.ReLU(),
-            nn.MaxPool2d(kernel_size=(2, 2)),
-            nn.Flatten(),
-            nn.Linear(800, 10)
+            nn.Linear(500, 10)
         )
 
     def forward(self, x):
+        x = x.reshape(x.shape[0],-1)
         x = self.net(x)
         return F.log_softmax(x, dim=1)

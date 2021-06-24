@@ -18,7 +18,7 @@ train_emnist_data = EMNIST(
     train=True,
     transform=ToTensor(),
     download=True,
-    split="balanced"
+    split="digits"
 )
 
 test_emnist_data = EMNIST(
@@ -26,12 +26,12 @@ test_emnist_data = EMNIST(
     train=False,
     transform=ToTensor(),
     download=True,
-    split="balanced"
+    split="digits"
 )
 
 model = MNISTNet()
 model = train.train(model, train_mnist_data)
-for param in model.parameters():
-    param.requires_grad = False
+# for param in model.parameters():
+#     param.requires_grad = False
 model = train.train(model, train_emnist_data)
-test.test(model, train_emnist_data)
+test.test(model, test_emnist_data)

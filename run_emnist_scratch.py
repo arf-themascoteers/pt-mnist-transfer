@@ -2,7 +2,7 @@ import train
 import test
 from torchvision.datasets import EMNIST
 from torchvision.transforms import ToTensor
-from emnist_net import EMNISTNet
+from mnist_net import MNISTNet
 
 train_emnist_data = EMNIST(
     root='data',
@@ -20,7 +20,7 @@ test_emnist_data = EMNIST(
     split="digits"
 )
 
-model = EMNISTNet()
+model = MNISTNet()
 
 model = train.train(model, train_emnist_data)
-test.test(model, train_emnist_data)
+test.test(model, test_emnist_data)
