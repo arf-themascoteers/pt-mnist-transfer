@@ -1,6 +1,7 @@
 from torch.utils.data import DataLoader
 import torch.nn.functional as F
 import torch
+import time
 
 def train(model, working_set):
     NUM_EPOCHS = 1
@@ -10,6 +11,7 @@ def train(model, working_set):
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-5)
     loss = None
     print("Training started...")
+    start_time = time.time()
     for epoch  in range(0, NUM_EPOCHS):
         for data, y_true in dataloader:
             optimizer.zero_grad()
@@ -18,7 +20,8 @@ def train(model, working_set):
             loss.backward()
             optimizer.step()
         print(f'Epoch:{epoch + 1}, Loss:{loss.item():.4f}')
-    print("Training end")
+    end_time = time.time()
+    print(f"Training end. Time required: {end_time-start_time}")
     return model
 
 
