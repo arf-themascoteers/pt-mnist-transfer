@@ -6,9 +6,9 @@ class MNISTNet(nn.Module):
     def __init__(self):
         super(MNISTNet, self).__init__()
         self.net = nn.Sequential(
-            nn.Linear(784, 500),
+            nn.Linear(784, 20),
             nn.ReLU(),
-            nn.Linear(500, 10)
+            nn.Linear(20, 10)
         )
 
     def forward(self, x):

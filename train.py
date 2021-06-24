@@ -4,7 +4,7 @@ import torch
 
 def train(model, working_set):
     NUM_EPOCHS = 1
-    BATCH_SIZE = 10
+    BATCH_SIZE = 100
     dataloader = DataLoader(working_set, batch_size=BATCH_SIZE, shuffle=True)
     model.train()
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-5)
