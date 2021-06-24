@@ -4,7 +4,7 @@ import torch
 import time
 
 def train(model, working_set):
-    NUM_EPOCHS = 5
+    NUM_EPOCHS = 3
     BATCH_SIZE = 1000
     dataloader = DataLoader(working_set, batch_size=BATCH_SIZE, shuffle=True)
     model.train()

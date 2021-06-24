@@ -5,14 +5,15 @@ from torchvision.datasets import EMNIST
 from torchvision.transforms import ToTensor
 from mnist_net import MNISTNet
 
-train_mnist_data = MNIST(
+train_mnist_data = EMNIST(
     root='data',
     train=True,
     transform=ToTensor(),
-    download=True
+    download=True,
+    split="mnist"
 )
 
-train_emnist_data = EMNIST(
+train_digits_data = EMNIST(
     root='data',
     train=True,
     transform=ToTensor(),
@@ -20,7 +21,7 @@ train_emnist_data = EMNIST(
     split="digits"
 )
 
-test_emnist_data = EMNIST(
+test_digits_data = EMNIST(
     root='data',
     train=False,
     transform=ToTensor(),
@@ -30,6 +31,7 @@ test_emnist_data = EMNIST(
 
 model = MNISTNet()
 model = train.train(model, train_mnist_data)
-model.linear1.requires_grad = False
-model = train.train(model, train_emnist_data)
-test.test(model, test_emnist_data)
+for param in model.linear1.parameters():
+    param.requires_grad = False
+model = train.train(model, train_digits_data)
+test.test(model, test_digits_data)

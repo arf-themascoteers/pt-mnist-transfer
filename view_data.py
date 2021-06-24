@@ -9,47 +9,51 @@ import matplotlib.pyplot as plt
 import torch
 
 def vis_tensor(dataset):
-    tensor,_ = dataset[10]
-    tensor = tensor.data.clone()
-    tensor = tensor.squeeze()
-    np_array = tensor.numpy()
-    plt.imshow(np_array)
-    plt.show()
-    print(len(dataset))
+    for i in range(5):
+        tensor,_ = dataset[i]
+        tensor = tensor.data.clone()
+        tensor = tensor.squeeze()
+        np_array = tensor.numpy()
+        plt.imshow(np_array)
+        plt.show()
+    print(dataset)
 
-train_mnist_data = MNIST(
-    root='data',
-    train=True,
-    transform=ToTensor(),
-    download=True
-)
 
-test_mnist_data = MNIST(
-    root='data',
-    train=False,
-    transform=ToTensor(),
-    download=True
-)
-
-train_emnist_data = EMNIST(
+train_mnist_data = EMNIST(
     root='data',
     train=True,
     transform=ToTensor(),
     download=True,
-    split="balanced"
+    split="mnist"
 )
 
-test_emnist_data = EMNIST(
+test_mnist_data = EMNIST(
     root='data',
     train=False,
     transform=ToTensor(),
     download=True,
-    split="balanced"
+    split="mnist"
+)
+
+train_digit_data = EMNIST(
+    root='data',
+    train=True,
+    transform=ToTensor(),
+    download=True,
+    split="digits"
+)
+
+test_digit_data = EMNIST(
+    root='data',
+    train=False,
+    transform=ToTensor(),
+    download=True,
+    split="digits"
 )
 
 vis_tensor(train_mnist_data)
 vis_tensor(test_mnist_data)
-vis_tensor(train_emnist_data)
-vis_tensor(test_emnist_data)
+vis_tensor(train_digit_data)
+vis_tensor(test_digit_data)
 
 
