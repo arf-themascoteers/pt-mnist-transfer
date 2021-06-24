@@ -4,7 +4,6 @@ from torchvision.datasets import MNIST
 from torchvision.datasets import EMNIST
 from torchvision.transforms import ToTensor
 from mnist_net import MNISTNet
-import torch.nn as nn
 
 train_mnist_data = MNIST(
     root='data',
